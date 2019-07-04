@@ -17,7 +17,7 @@ class Contacts extends React.Component {
     return (
       <Consumer>
         {value => {
-          const { contacts } = this.value;
+          const { contacts } = value;
           return (
             <React.Fragment>
               {contacts.map(contact => (
