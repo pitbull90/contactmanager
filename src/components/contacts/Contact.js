@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Consumer } from "../context";
+import { Consumer } from "../../context";
 
 class Contact extends React.Component {
   state = {
@@ -12,7 +12,7 @@ class Contact extends React.Component {
   };
 
   render() {
-    const { id, name, email, phone } = this.props;
+    const { id, name, email, phone } = this.props.contact;
     const { showContactInfo } = this.state;
     return (
       <Consumer>
