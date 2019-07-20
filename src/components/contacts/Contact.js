@@ -52,8 +52,8 @@ class Contact extends React.Component {
   }
 }
 
-// Contact.propTypes = {
-//   contact: PropTypes.object.isRequired
-// };
+Contact.propTypes = {
+  contact: PropTypes.object.isRequired
+};
 
 export default Contact;

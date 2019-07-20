@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import uuid from "uuid";
 
 const Context = React.createContext();
 
@@ -11,6 +12,11 @@ const reducer = (state, action) => {
           contact => contact.id !== action.payload
         )
       };
+    case "ADD_CONTACT":
+      return {
+        ...state,
+        contacts: [action.payload, ...state.contacts]
+      };
     default:
       return state;
   }
@@ -20,19 +26,19 @@ export class Provider extends Component {
   state = {
     contacts: [
       {
-        id: 1,
+        id: uuid(),
         name: "John Doe",
         email: "jdoe@gmail.com",
         phone: "555-555-5555"
       },
       {
-        id: 2,
+        id: uuid(),
         name: "Karen Williams",
         email: "karen@gmail.com",
         phone: "222-222-2222"
       },
       {
-        id: 3,
+        id: uuid(),
         name: "Henry Johnson",
         email: "henry@gmail.com",
         phone: "111-111-1111"
