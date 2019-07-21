@@ -7,7 +7,8 @@ class AddContact extends React.Component {
   state = {
     name: "",
     email: "",
-    phone: ""
+    phone: "",
+    errors: {}
   };
 
   onSubmit = (dispatch, e) => {
@@ -15,11 +16,28 @@ class AddContact extends React.Component {
 
     const { name, email, phone } = this.state;
 
+    // Check for Errors
+    if (name === "") {
+      this.setState({ errors: { name: "Name is required" } });
+      return;
+    }
+
+    if (email === "") {
+      this.setState({ errors: { email: "Email is required" } });
+      return;
+    }
+
+    if (phone === "") {
+      this.setState({ errors: { phone: "Phone is required" } });
+      return;
+    }
+
     const newContact = {
       id: uuid(),
       name: name,
       email: email,
-      phone: phone
+      phone: phone,
+      errors: {}
     };
 
     dispatch({ type: "ADD_CONTACT", payload: newContact });
@@ -35,7 +53,7 @@ class AddContact extends React.Component {
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   render() {
-    const { name, email, phone } = this.state;
+    const { name, email, phone, errors } = this.state;
 
     return (
       <Consumer>
@@ -52,6 +70,7 @@ class AddContact extends React.Component {
                     placeholder="Enter Name..."
                     value={name}
                     onChange={this.onChange}
+                    error={errors.name}
                   />
 
                   <TextInputGroup
@@ -61,6 +80,7 @@ class AddContact extends React.Component {
                     placeholder="Enter Email..."
                     value={email}
                     onChange={this.onChange}
+                    error={errors.email}
                   />
 
                   <TextInputGroup
@@ -69,6 +89,7 @@ class AddContact extends React.Component {
                     placeholder="Enter Phone..."
                     value={phone}
                     onChange={this.onChange}
+                    error={errors.phone}
                   />
 
                   <input
